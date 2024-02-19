@@ -1,0 +1,8 @@
+#Allerhand MP3-Dateien in jeglichen Ordnern
+*.mp3
+
+#Sollte zu DEBUG-Zwecken eine ".htaccess" für den eigenen Webserver angelegt worden sein
+.htaccess
+
+#Alles im "media"-Ordner (hier sollte sich nie etwas ändern, außer einer README oder einem Playlist-Bild)
+media/

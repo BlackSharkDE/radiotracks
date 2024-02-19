@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Hier den Pfad auf dem Webserver eintragen (mit / am Anfang und Ende!), der in den Ordner mit der "index.html" führt: /subdir/sub_dir/dirSub/
+
+        Dient dazu, dass die Scripte und andere Includes wie CSS zuverlässig über alle URLs (auch wenn man Views direkt über die URL ansteuert)
+        inkludiert werden.
+        - Die Rede ist hier hauptsächlich von relativen Includes.
+        - Bei absoluten Includes könnte das entfallen, weil die gesamte URL benutzt wird und nicht wie bei relativen errechnet wird.
+
+        Wenn die SPA-Anwendung die einzige Website auf dem Webserver ist, kann dies entfallen, bzw. hier reicht ein einzelnes "/"
+
+        Der Pfad ist auch wichtig für Verlinkungen (siehe <nav> in "IndexView") und für die Routen im "routes"-Array selbst.
+    -->
+    <base href="/vanilla-spa.js/">
+    
+    <meta charset="UTF-8">
+    <title>vanilla-spa.js - Demo</title>
+</head>
+<body>
+
+    <!-- Seiten/View-Content (wird durch Views festgelegt) -->
+    <div id="app"></div>
+
+    <!-- Standard-View "AbstractSPAView" inkludieren -->
+    <script type="text/javascript" src="abstractspaview.js"></script>
+    <script type="text/javascript">
+        //========================================================================================================================
+        //-- Views definieren (sollten in eigene JS-Dateien ausgelagert werden ; für die Übersicht) --
+
+        //View für Index-Seite
+        class IndexView extends AbstractSPAView {
+            /**
+             * -- Konstruktor --
+             * Dieser sollte immer den "params"-Parameter entgegennehmen, auch wenn dieser nicht verarbeitet wird
+             */
+            constructor(params) {
+                super(); //Konstruktor für "AbstractSPAView" ohne Parameter, da diese View keine Parameter verabeitet
+                this.setTitle("Index-View of this demo"); //Titel des Tabs setzen
+            }
+
+            //Überschreibe "getHtml"-Methode
+            async getHtml() {
+                //Das HTML der Index-Seite
+                //Enthält eine Navigation (die <a>-Tags sind mit "data-link"-Attribut)
+                return `
+                    <h1>INDEX</h1>
+                    <nav>
+                        <a href="/vanilla-spa.js/" data-link>Index (diese Seite)</a>
+                        <br><br>
+                        <a href="/vanilla-spa.js/impressum" data-link>Impressum anzeigen (mit simulierter Ladezeit)</a>
+                        <br><br>
+                        <a href="/vanilla-spa.js/subpage/suppage" data-link>suppage</a>
+                        <br><br>
+                        <a href="/vanilla-spa.js/post/1" data-link>Post mit der ID 1 anzeigen (mit simulierter Ladezeit)</a>
+                        <a href="/vanilla-spa.js/post/2" data-link>Post mit der ID 2 anzeigen (mit simulierter Ladezeit)</a>
+                        <a href="/vanilla-spa.js/post/3" data-link>Post mit der ID 3 anzeigen (mit simulierter Ladezeit -> forciert 404)</a>
+                        <br><br>
+                        <a href="/vanilla-spa.js/dynamicfont/color/red" data-link>dynamicfont (color | red)</a>
+                        <a href="/vanilla-spa.js/dynamicfont/font-size/20pt" data-link>dynamicfont (font-size | 20pt)</a>
+                        <a href="/vanilla-spa.js/dynamicfont/color" data-link>dynamicfont (color | --nichts ohne Slash--)</a>
+                        <a href="/vanilla-spa.js/dynamicfont/color/" data-link>dynamicfont (color | --nichts mit Slash--)</a>
+                        <br><br>
+                        <a href="/vanilla-spa.js/thispagedoesnotexist" data-link>Diese Route existiert nicht</a>
+                    </nav>
+                `;
+            }
+        }
+
+        //View für Impressum-Seite
+        class ImpressumView extends AbstractSPAView {
+            constructor(params) {
+                super(); //Konstruktor für "AbstractSPAView" ohne Parameter, da diese View keine Parameter verabeitet
+                this.setTitle("Impressum");
+            }
+            async getHtml() {
+
+                //Simuliere langen Request
+                await new Promise(r => setTimeout(r, 3000));
+
+                //-- Benutze JavaScript zum Erstellen der View --
+
+                //<div>
+                var divElement = document.createElement("div");
+                
+                //"onClick"-Event
+                divElement.onclick = () => {
+                    alert("Das <div> wurde angeklickt.");
+                };
+
+                //Style
+                divElement.style = "border: 2px solid #ff0000";
+
+                //<h1>
+                var headingOne = document.createElement("h1");
+                headingOne.innerText = "Impressum";
+                divElement.appendChild(headingOne);
+
+                //<p>
+                var pElement = document.createElement("p");
+                pElement.innerText = "Hier steht Text des Impressums etc.";
+                divElement.appendChild(pElement);
+
+                //Gebe HTML-Element (keinen String) zurück.
+                return divElement;
+            }
+        }
+
+        //View "Suppage"
+        class Suppage extends AbstractSPAView {
+            constructor(params) {
+                super(); //Konstruktor für "AbstractSPAView" ohne Parameter, da diese View keine Parameter verabeitet
+                this.setTitle("Hey");
+            }
+            async getHtml() {
+                return `
+                    <h1>Yo, whats up?</h1>
+                    <p>How's it going?</p>
+                `;
+            }
+
+            //Definiere optionale "afterHtml"-Methode
+            async afterHtml() {
+                //-- Beispiel, was diese Methode tun könnte --
+
+                let app = document.getElementById("app");
+                app.innerHTML += `<p>How are you?</p>`;
+                
+                //Simuliere einen weiteren Request
+                await new Promise(r => setTimeout(r, 2000));
+                app.innerHTML += `<b><p>Tell me!</p></b>`;
+
+                this.setTitle("Ho!");
+            }
+        }
+
+        //View zum Anzeigen von Posts (verwendet den Parameter "id")
+        class PostView extends AbstractSPAView {
+            constructor(params) {
+                super(params); //Konstruktor für "AbstractSPAView" mit Parametern, da diese View Parameter verabeitet
+                this.setTitle("Posts anzeigen");
+            }
+            async getHtml() {
+                
+                //Simuliere langen Request
+                await new Promise(r => setTimeout(r, 3000));
+
+                if(this.params.id > 0 && this.params.id < 3) {
+                    return `
+                        <h1>Zeige einen Post an</h1>
+                        <p>Dies ist der Post mit der ID: ` + this.params.id + `</p>
+                        <br>
+                        <b><p>Diese Route ohne Parameter: ` + getRouteWithoutParameters(3) + `</p></b>
+                    `;
+                }
+
+                //Forciere eine 404-Meldung
+                return displayNotFound();
+            }
+        }
+
+        //View für dynamische Textansicht (verwendet Parameter "cssattribute" und "value")
+        class DynamicFontView extends AbstractSPAView {
+            constructor(params) {
+                super(params); //Konstruktor für "AbstractSPAView" mit Parametern, da diese View Parameter verabeitet
+                this.setTitle("Das ist DynamicFontView");
+            }
+            async getHtml() {
+                return `
+                    <h1>DynamicFontView</h1>
+                    <p>name: ` + this.params.cssattribute + `</p>
+                    <p>value: ` + this.params.value + `</p>
+
+                    <p style="` + this.params.cssattribute + `:` + this.params.value + `">Dies ist ein Beispieltext, der durch die beiden URL-Parameter angepasst wird</p>
+                `;
+            }
+        }
+
+        //View für nicht gefundene Route
+        class BasicNotFound extends AbstractSPAView {
+            constructor(params) {
+                super(); //Konstruktor für "AbstractSPAView" ohne Parameter, da die View keine Parameter verabeitet
+                this.setTitle("404 Not Found!");
+            }
+            async getHtml() {
+                return `
+                    <h1>404 Not Found</h1>
+                    <p>Diese Route existiert nicht</p>
+                    <a href="/vanilla-spa.js/" data-link>Auf die Index-Seite wechseln</a>
+                `;
+            }
+        }
+
+        //========================================================================================================================
+        //-- Routen definieren --
+
+        //Für Erklärungen zum Aufbau des Arrays siehe "spa.js"
+        //=> Wichtig ist hier das <base>-Tag, dass den Pfad auf dem Webserver richtig einstellt (ohne den können Routen nicht richtig zugeordnet werden!)
+        //=> Der <base>-Tag-Pfad kann bei Routen entfallen, da dieser schon mit berücksichtigt wird
+        const routes = [
+            { path: "/", view: IndexView },
+            { path: "/impressum", view: ImpressumView },
+            { path: "/subpage/suppage", view: Suppage },
+            { path: "/post/:id", view: PostView },
+            { path: "/dynamicfont/:cssattribute/:value", view: DynamicFontView },
+            { path: "/404", view: BasicNotFound }
+        ];
+
+        //========================================================================================================================
+        //-- Standard-Inhalt für "app"-<div> definieren --
+        //- Diese Variable muss nicht gesetzt werden! Sie ist optional.
+        //- Dient zum Überbrücken von Ladezeiten (laden der nächsten View bzw. deren Content (z.B. von einer API etc.))
+        //- Sollte HTML sein. Dieses entweder als String oder HTML-Element / DOM-Objekt angeben.
+
+        //Als simpler HTML-String
+        var standardAppContent_String = '<div style="background-color: #ff0000; width: 100%; font-size: 20pt;">Lade Inhalte, bitte warten... (=> standardAppContent = String)</div>';
+
+        //Als HTML-Element / DOM-Objekt
+        var standardAppContent_Object       = document.createElement("div");
+        standardAppContent_Object.style     = "background-color: #ff0000; width: 100%; font-size: 20pt;"
+        standardAppContent_Object.innerText = "Lade Inhalte, bitte warten... (=> standardAppContent = HTML-Element)";
+
+        //Die Variable "standardAppContent" setzen
+        const standardAppContent = standardAppContent_Object;
+
+    </script>
+
+    <!-- SPA-Logik inkludieren -->
+    <script type="text/javascript" src="spa.js"></script>
+
+</body>
+</html>

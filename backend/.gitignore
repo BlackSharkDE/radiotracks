@@ -1,0 +1,5 @@
+#Kompiliertes Python
+*.pyc
+
+#Dateien in "pycache"-Ordnern
+__pycache__/

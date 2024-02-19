@@ -1,0 +1,65 @@
+/**
+ * Diese Schriftarten werden auch von Spotify benutzt (habe mir diese geborgt)
+ *
+ * Hinweis: Bei allen Schriftarteinstellungen "Verdana" als Ersatz/Fallback-Schriftart nutzen!
+ */
+
+/*Dickere Variante von "CircularSp-Book"*/
+@font-face {
+    font-family: 'CircularSp-Bold';
+    font-weight: 900;
+    src: url('CircularSp-Bold.woff2') format('woff2');
+}
+
+/*Neue Standard-Schrift*/
+@font-face {
+    font-family: 'CircularSp-Book';
+    src: url('CircularSp-Book.woff2') format('woff2');
+}
+
+/*Etwas dicker als "CircularSpTitle-Bold"*/
+@font-face {
+    font-family: 'CircularSpTitle-Black';
+    src: url('CircularSpTitle-Black.woff2') format('woff2');
+}
+
+/*Dicke Schrift für Überschriften etc.*/
+@font-face {
+    font-family: 'CircularSpTitle-Bold';
+    src: url('CircularSpTitle-Bold.woff2') format('woff2');
+}
+
+/*========================================================================================================================================*/
+/*Überschreibe die Schriftart in ein paar CSS-Definitionen --> Muss nach dem CSS im "css"-Ordner angewandt / eingebunden werden!*/
+
+body {
+    font-family: 'CircularSp-Book', Verdana;
+}
+
+#leftbar {
+    font-family: 'CircularSpTitle-Bold', Verdana;
+}
+
+#player__currentplay {
+    font-family: 'CircularSp-Book', Verdana;
+}
+
+.app__container__header__text__name {
+    font-family: 'CircularSpTitle-Black', Verdana;
+}
+
+.app__container__item__text__one {
+    font-family: 'CircularSp-Bold', Verdana;
+}
+
+.app__container__head {
+    font-family: 'CircularSpTitle-Black', Verdana;
+}
+
+.app__visualize__select {
+    font-family: 'CircularSpTitle-Bold', Verdana;
+}
+
+.app__visualize__hint {
+    font-family: 'CircularSp-Book', Verdana;
+}

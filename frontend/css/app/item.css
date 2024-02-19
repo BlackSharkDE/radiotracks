@@ -1,0 +1,77 @@
+/**
+ * Items innerhalb von "app__container"-Divs
+ */
+
+/*========================================================================================================================================*/
+
+.app__container__item {
+    text-align: left;
+    border-radius: 10px;
+    padding: 10px;
+
+    /*Größe*/
+    width: 210px;
+    height: 290px;
+
+    /*Sodass sich die Elemente aufreihen können*/
+    display: inline-block;
+
+    /*Abstand der Items zueinander*/
+    margin: 16px;
+
+    /*Hintergrund*/
+    background-color: #1f1f1f;
+
+    /*Schwarzer Schatten --> Heben die Elemente hervor*/
+    box-shadow: 0px 0px 60px #000000;    
+}
+.app__container__item:hover {
+    cursor: pointer;
+    background-color: #444444;
+}
+
+.app__container__item__imagewrapper {
+    /*Größe*/
+    width: 200px;
+    height: 200px;
+
+    /*Horizontal zentrieren*/
+    margin-left: auto;
+    margin-right: auto;
+    
+    margin-top: 5px;
+}
+.app__container__item__imagewrapper img {
+    /*Bild kann maximal so groß sein*/
+    max-width: 200px;
+    max-height: 200px;
+
+    /*Bild vertikal und horizontal zentrieren*/
+    margin-top: 50%;
+    margin-left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    border-radius: 4px;
+}
+
+.app__container__item__text {
+    /*Größe*/
+    width: 200px;
+
+    /*Horizontal zentrieren*/
+    margin-left: auto;
+    margin-right: auto;
+
+    /*Abstand zum Bild*/
+    margin-top: 5px;
+}
+.app__container__item__text__one {
+    font-weight: 700;
+    font-size: 1em;
+}
+.app__container__item__text__two {
+    font-weight: 400;
+    font-size: 0.85em;
+    color: #c0c0c0;
+}

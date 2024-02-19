@@ -1,0 +1,51 @@
+/**
+ * Alles innerhalb des "leftbar"-Div
+ */
+
+/*========================================================================================================================================*/
+/*Logo*/
+
+#leftbar__logo {
+    /*Spacing oben und unten*/
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    /*Damit Link und damit auch das Logo-Bild in der Mitte sind*/
+    text-align: center;
+}
+#leftbar__logo img {
+    width: 80px;
+    height: 80px;
+}
+
+/*Trenner unter dem Logo*/
+#leftbar__logo hr {
+    width: 82%;
+    color: #ffffff;
+    opacity: 40%;
+}
+
+/*========================================================================================================================================*/
+/*Items*/
+
+/*Items unter dem Trenner*/
+.leftbar__item {
+    margin-top: 15px;
+}
+
+/*Buttons der Items*/
+.leftbar__item__button {
+    background-color: transparent;
+    color: #ffffff; /*Auch weiße Schrift*/
+    border: none; /*Keine Umrandung der Buttons selbst*/
+    width: 100%; /*So breit wie leftbar*/
+    font-size: 25px; /*Schrift und Icon-Größe*/
+    font-family: inherit; /*Schriftart explizit erben*/
+    text-align: left; /*Damit der Text untereinander steht*/
+    padding-left: 45px; /*Abstand links*/
+    outline: none; /*Umrandung, die durch drücken entstehen kann ausschalten*/
+}
+.leftbar__item__button:hover {
+    color: #ff0000 !important; /*Important, weil per JavaScript die Farben der Buttons angepasst werden. Ohne Important wird der Hover Effekt entfernt*/
+    cursor: pointer;
+}

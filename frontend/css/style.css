@@ -1,0 +1,120 @@
+/**
+ * Grundlegende Struktur und globale Dinge
+ */
+
+/*========================================================================================================================================*/
+/*Standard-Kram*/
+
+html {
+    overflow-y: hidden; /*Keine Scroll-Bar auf Y-Achse, da Website an sich nicht scrollbar*/
+    overflow-x: hidden; /*Keine Scroll-Bar auf X-Achse, da Website an sich nicht scrollbar*/
+    height: 100%; /*100% der Seite verwenden*/
+    padding: 0; /*Kein Standard-Padding*/
+
+    /*Für dunkle Scroll-Bars und andere Einstellungen, die Anzeigen, dass die Website dunkel ist*/
+    color-scheme: dark;
+}
+
+body {
+    margin: 0; /*Kein Standard-Margin*/
+    padding: 0; /*Kein Standard-Padding*/
+    height: 100%; /*body soll ganzes Browserfenster benutzen*/
+
+    /*Schrift*/
+    font-family: Verdana;
+    font-size: 12pt;
+    color: #ffffff;
+
+    /*Für Mobile - Anwendung ist Dunkel gehalten*/
+    background-color: #000000; 
+
+    /*Schaltet Textauswahl aus*/
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    /*Verhindere zu klein werden der Website*/
+    min-width: 960px;
+}
+
+/*Wenn Text zu lang (betrifft alle <td>- und <p>-Tags)*/
+p, td {
+    text-overflow: ellipsis;
+    overflow: hidden; /*Braucht man für vorhergehendes*/
+    white-space: nowrap;
+}
+
+/*========================================================================================================================================*/
+/*Die Standard-Aufteilung*/
+
+#leftbar {
+    float: left;
+
+    /*Größe*/
+    width: 230px; /*Feste Breite*/
+    height: calc(100% - 93px); /*-93, da player-Höhe*/
+
+    /*Schwarzer Hintergrund*/
+    background-color: #000000;
+}
+
+#notification {
+    background-color:rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    box-shadow: 0px 0px 60px #000000;
+
+    /*Größe*/
+    min-width: 10px;
+    max-width: 500px;
+
+    /*Position*/
+    position: absolute;
+    margin-left: 50%;
+    margin-top: 30px;
+    transform: translate(calc(-50% + 105px),0);
+    z-index: 1; /*Über allem anderen*/
+
+    text-align: center;
+    padding: 10px;
+
+    /*Standardmäßig versteckt*/
+    visibility: hidden;
+}
+#notification:hover {
+    cursor: pointer;
+}
+
+#app {
+    float: left;
+
+    /*Größe*/
+    width: calc(100% - 230px); /*-230, da leftbar-Breite*/
+    height: calc(100% - 93px); /*-93, da player-Höhe*/
+
+    /*Leicht schwarzer Hintergrund*/
+    background-color: #121212;
+
+    overflow-y: scroll; /*Scrollbar auf Y-Achse immer anzeigen*/
+    overflow-x: hidden; /*Scrollbar auf X-Achse nie anzeigen*/
+}
+
+#player {
+    border-top: 3px solid #ff0000; /*Rote Top-Border*/
+    float: left;
+
+    /*Größe*/
+    width: 100%;
+    height: 90px;
+
+    /*Hintergrundfarbe im Player-Abteil*/
+    background-color: #181818;
+
+    /*Innerhalb des Players wird alles zentriert angeordnet (Buttons, Schrift etc.)*/
+    text-align: center;
+
+    /*Schrift soll weitestgehend standardmäßig Verdana sein*/
+    font-family: Verdana;
+}

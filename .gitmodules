@@ -1,0 +1,9 @@
+[submodule "frontend/js/rainbow.js"]
+	path = frontend/js/rainbow.js
+	url = http://192.168.100.4:3000/Joe-Dev/rainbow.js.git
+[submodule "frontend/js/vanilla-spa.js"]
+	path = frontend/js/vanilla-spa.js
+	url = http://192.168.100.4:3000/Joe-Dev/vanilla-spa.js.git
+[submodule "frontend/js/colorfulimage.js"]
+	path = frontend/js/colorfulimage.js
+	url = http://192.168.100.4:3000/Joe-Dev/colorfulimage.js.git

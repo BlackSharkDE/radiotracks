@@ -1,0 +1,210 @@
+/**
+ * Alles innerhalb des "player"-Div
+ */
+
+/*========================================================================================================================================*/
+/*Die Buttons des Players*/
+
+.player__button {
+    /*Größe*/
+    width: 40px;
+    height: 40px;
+
+    /*Button verschwinden lassen*/
+    background-color: transparent;
+    border: none;
+
+    /*Schrift*/
+    color: #ffffff;
+    font-size: 28px; /*Icon-Größe*/
+
+    /*Icons innerhalb der Buttons mittig*/
+    padding: 0;
+}
+.player__button__bigger {
+    /*Button selbst ist größer*/
+    width: 60px;
+    height: 60px;
+
+    /*Icon-Größe vergrößern*/
+    font-size: 48px;
+}
+.player__button:hover {
+    color: #ff0000 !important; /*Important, weil per JavaScript die Farben der Buttons angepasst werden. Ohne Important wird der Hover Effekt entfernt*/
+    cursor: pointer;
+}
+
+/*========================================================================================================================================*/
+/*Die Slider des Players*/
+
+.player__slider {
+    -webkit-appearance: none;
+    border-radius: 5px;
+    background: #5c5c5c;
+    outline: none;
+
+    /*Größen sollten jeweils angpasst werden*/
+    width: 100%;
+    height: 20%;
+}
+.player__slider:hover {
+    background: #ff0000;
+    cursor: pointer;
+}
+
+/*Den runden Knopf stylen*/
+.player__slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none; /*Entferne die Border, entstanden durch border-radius*/
+    background: #ffffff;
+    cursor: pointer;
+}
+.player__slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none; /*Entferne die Border, entstanden durch border-radius*/
+    background: #ffffff;
+    cursor: pointer;
+}
+
+/*========================================================================================================================================*/
+/*player__currentplay*/
+
+#player__currentplay {
+    float: left;
+
+    /*Abstand zum linken Bildschirmrand (gleich wie "player__right")*/
+    margin-left: 10px;
+
+    /*Größe*/
+    width: 20%;
+    min-width: 215px; /*Relativ dynamische Breite (passt sich an Fensterbreite bis x Pixel an), aufgrund des Textes*/
+    height: 100%;
+}
+
+/*Text*/
+#player__currentplay p {
+    text-align: left;
+    margin-top: 18px;
+}
+#player__currentplay__big {
+    font-weight: bold;
+    font-size: 15px;
+}
+#player__currentplay__small {
+    font-size: 12px;
+}
+
+/*Banner*/
+#player__currentplay__banner {
+    width: 74px;
+    height: 74px;
+    float: left;
+    margin-top: 8px;
+    margin-right: 12px; /*Abstand zum Text*/
+}
+#player__currentplay__banner:hover {
+    cursor: pointer;
+}
+
+#player__currentplay__banner img {
+    /*Bild kann maximal so groß sein*/
+    max-width: 74px;
+    max-height: 74px;
+
+    /*Bild vertikal und horizontal zentrieren*/
+    margin-top: 50%;
+    margin-left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/*Lade-Animation vor dem Banner*/
+#player__currentplay__loading {
+    visibility: hidden; /*Standardmäßig verstecken*/
+    position: absolute;
+
+    /*Gleiche größe wie Banner*/
+    width:74px;
+    height:74px;
+
+    /*Vor dem Bild-Banner zeigen*/
+    z-index: 1;
+}
+#player__currentplay__loading i {
+    margin-top: 12px;
+}
+
+/*========================================================================================================================================*/
+/*player__controls*/
+
+#player__controls {
+    /*Größe*/
+    width: 500px;
+    height: 100%;
+
+    /*Mittig (horizontal)*/
+    margin-left: 50%;
+    -ms-transform: translate(-50%, 0%);
+    transform: translate(-50%, 0%);
+}
+
+/*Hauptelemente (Play, Vor etc.)*/
+#player__controls__main {
+    /*Größe*/
+    width: 100%;
+    height: 45px; /*Hälfte der Player-Höhe*/
+
+    /*Abstand zum Seeker etc.*/
+    margin-bottom: 18px;
+}
+
+/*Trackmeta*/
+#player__controls__trackmeta {
+    /*Größe*/
+    width: 100%;
+    height: 45px; /*Hälfte der Player-Höhe*/
+
+}
+#player__controls__trackmeta i {
+    /*Kursive Schrift ausschalten*/
+    font-style: normal;
+}
+#player__controls__trackmeta__seekerslider {
+    /*Breite ändern*/
+    width: 300px;
+}
+
+/*========================================================================================================================================*/
+/*player__right*/
+
+#player__right {
+    float: right;
+
+    /*Abstand zum rechten Bildschirmrand (gleich wie "player__currentplay")*/
+    margin-right: 10px;
+
+    /*Größe*/
+    width: 150px;
+    height: 100%;
+
+    /*In den Player hieven*/
+    margin-top: -90px; /*Höhe des Players*/
+}
+#player__right .player__button {
+    /*Buttons mittig (vertikal)*/
+    margin-top: calc((90px - 60px) / 2); /*Höhe des Players und Höhe der Buttons + Volume Slider (Knopf)*/
+    
+    /*Abstand zwischen den Buttons*/
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+#player__right__volumeslider {
+    height: 10%;
+}

@@ -1,0 +1,80 @@
+/**
+ * Track-Tabellen innerhalb von "app__container"-Divs
+ */
+
+/*========================================================================================================================================*/
+/*Die Tabelle selbst*/
+
+.app__container__tracktable {
+    /*Tabelle so groß wie Parent-Div*/
+    table-layout: fixed;
+    width: 100%;
+    
+    /*Zeilen separieren*/
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+/*Tabellenkopf*/
+.app__container__tracktable th {
+    border-bottom: 2px solid #808080;
+    height: 60px;
+}
+
+/*Tabelleninhalt*/
+.app__container__tracktable td {
+    background-color: #1f1f1f;
+}
+
+/*Hover-Effekt (<tr> kann nicht gut angesprochen werden, daher dieser Workaround)*/
+.trhover:hover {
+    cursor: pointer;
+    background-color: #444444;
+}
+.trhover:hover td {
+    cursor: pointer;
+    background-color: transparent;
+}
+
+/*========================================================================================================================================*/
+/*Die einzelnen Spalten*/
+
+/*Song-Nr. in der Tabelle*/
+.app__container__tracktable__songnumber {
+    text-align: right;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+/*Album-Cover des Tracks*/
+.app__container__tracktable__cover {
+    width: 40px;
+}
+.app__container__tracktable__cover img {
+    /*Maximale Bildgröße*/
+    max-width: 40px;
+    max-height: 40px;
+}
+
+/*Titel-Spalte des Tracks*/
+.app__container__tracktable__title {
+    text-align: left;
+    padding-left: 10px;
+}
+.app__container__tracktable__title__name, .app__container__tracktable__title__artist {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.app__container__tracktable__title__name {
+    font-size: 1em;
+}
+.app__container__tracktable__title__artist {
+    font-size: 0.85em;
+    color: #c0c0c0;
+}
+
+/*Album-Name des Tracks*/
+.app__container__tracktable__album {
+    text-align: left;
+    padding-left: 10px;
+}

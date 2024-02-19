@@ -1,0 +1,36 @@
+{
+    "general": {
+        "threadPoolExecutorMaxWorkers": 8,
+        "useColoredLogo": true
+    },
+
+    "api": {
+        "host"                 : "127.0.0.1",
+        "port"                 : 1337,
+        "production"           : true,
+        "usesReverseProxy"     : true,
+        "reverseProxyUrlScheme": "https",
+        "waitressThreads"      : 8
+    },
+
+    "database": {
+        "user": "",
+        "pass": "",
+        "host": "",
+        "port": 3306
+    },
+
+    "indexing": {
+        "mediaFolderPath" : "C:/dir/media",
+        "executionHour"   : 5,
+        "executionMinutes": 30
+    },
+
+    "hosting": {
+        "announceLikeliness"          : 60,
+        "interceptionLikeliness"      : 60,
+        "maximumConsecutiveSongCount" : 4,
+        "maximumConsecutiveAdCount"   : 4,
+        "neededMixLength"             : 2700
+    }
+}

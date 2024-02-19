@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- ggf. anpassen (mit / am Anfang und Ende!), darf keine komplette URL sein! -->
+    <base href="/Radiotracks-4/frontend/">
+
+    <meta charset="UTF-8">
+    <title>Radiotracks</title>
+    <link rel="icon" href="res/radiotracks.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/leftbar.css">
+    <link rel="stylesheet" href="css/player.css">
+
+    <link rel="stylesheet" href="css/app/container.css">
+    <link rel="stylesheet" href="css/app/item.css">
+    <link rel="stylesheet" href="css/app/loading.css">
+    <link rel="stylesheet" href="css/app/tracktable.css">
+    <link rel="stylesheet" href="css/app/visualize.css">
+
+    <!-- CSS für Einbindung eigener Fonts -->
+    <link rel="stylesheet" href="fonts/fonts.css">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" type="text/css" href="http://192.168.178.18/cdn/fontawesome/font-awesome.min.css">
+</head>
+<body>
+
+    <!-- colorfulimage.js einbinden -->
+    <script type="text/javascript" src="js/colorfulimage.js/src.js"></script>
+
+    <!-- Anderes -->
+    <script type="text/javascript" src="js/display.js"></script>
+    <script type="text/javascript" src="js/connection.js"></script>
+    <script type="text/javascript" src="js/selection.js"></script>
+    <script type="text/javascript" src="js/content.js"></script>
+
+    <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------ -->
+    <!-- Dinge für SPA -->
+
+    <!-- vanilla-spa.js (Standard-View) -->
+    <script type="text/javascript" src="js/vanilla-spa.js/abstractspaview.js"></script>
+
+    <!-- Eigene Views inkludieren -->
+    <script type="text/javascript" src="js/views/notfound.js"></script>
+
+    <script type="text/javascript" src="js/views/index.js"></script>
+    <script type="text/javascript" src="js/views/search.js"></script>
+    <script type="text/javascript" src="js/views/library.js"></script>
+
+    <script type="text/javascript" src="js/views/artists.js"></script>
+    <script type="text/javascript" src="js/views/artist.js"></script>
+    <script type="text/javascript" src="js/views/album.js"></script>
+
+    <script type="text/javascript" src="js/views/authors.js"></script>
+    <script type="text/javascript" src="js/views/author.js"></script>
+    <script type="text/javascript" src="js/views/audiobook.js"></script>
+
+    <script type="text/javascript" src="js/views/channels.js"></script>
+
+    <script type="text/javascript" src="js/views/playlists.js"></script>
+    <script type="text/javascript" src="js/views/playlist.js"></script>
+
+    <script type="text/javascript" src="js/views/podcasts.js"></script>
+    <script type="text/javascript" src="js/views/podcast.js"></script>
+
+    <script type="text/javascript" src="js/views/currentplaylist.js"></script>
+
+    <script type="text/javascript" src="js/views/visualize.js"></script>
+
+    <!-- Routen definieren -->
+    <script type="text/javascript">
+
+        //SPA -> routes
+        const routes = [
+            //Hauptseiten
+            { path: "/", view: IndexView },
+            { path: "/search", view: SearchView },
+            { path: "/search/:searchTerm", view: SearchView },
+            { path: "/library", view: LibraryView },
+
+            //Künstler
+            { path: "/artists", view: ArtistsView },
+            { path: "/artist/:id", view: ArtistView },
+            { path: "/album/:id", view: AlbumView },
+
+            //Autoren
+            { path: "/authors", view: AuthorsView },
+            { path: "/author/:id", view: AuthorView },
+            { path: "/audiobook/:id", view: AudioBookView },
+
+            //Channels
+            { path: "/channels", view: ChannelsView },
+
+            //Playlists
+            { path: "/playlists", view: PlaylistsView },
+            { path: "/playlist/:id", view: PlaylistView },
+
+            //Podcasts
+            { path: "/podcasts", view: PodcastsView },
+            { path: "/podcast/:id", view: PodcastView },
+
+            { path: "/currentplaylist", view: CurrentPlaylistView },
+
+            { path: "/visualize", view: VisualizeView },
+
+            { path: "/notfound", view: NotFoundView }
+        ];
+
+        //SPA -> standardAppContent
+        const standardAppContent = `
+        <div class="app__loading">
+            <div class="app__loading__icons">
+                <i class="fa fa-circle-o-notch fa-spin fa-4x fa-fw"></i>
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>`;
+    </script>
+
+    <!-- vanilla-spa.js (Logik) -->
+    <script type="application/javascript" src="js/vanilla-spa.js/spa.js"></script>
+
+    <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------ -->
+    <!-- Struktur der Applikation -->
+
+    <div id="leftbar">
+        <div id="leftbar__logo" ondragstart="return false;">
+            <a href=""><img id="leftbar__logo__img" src="res/radiotracks.png"></a>
+            <hr>
+        </div>
+        <div class="leftbar__item">
+            <button class="leftbar__item__button" onclick="navigateTo(getRouteWithoutParameters(0));"><i class="fa fa-home"></i>&nbsp;Start</button>
+        </div>
+        <div class="leftbar__item">
+            <button class="leftbar__item__button" onclick="navigateTo(getRouteWithoutParameters(1));"><i class="fa fa-search"></i>&nbsp;Suchen</button>
+        </div>
+        <div class="leftbar__item">
+            <button class="leftbar__item__button" onclick="navigateTo(getRouteWithoutParameters(3));"><i class="fa fa-th"></i>&nbsp;Bibliothek</button>
+        </div>
+    </div>
+
+    <div id="notification"></div>
+    <script type="text/javascript" src="js/notification.js"></script>
+
+    <div id="app"></div>
+
+    <div id="player">
+        <div id="player__currentplay">
+            <div id="player__currentplay__banner">
+                <div id="player__currentplay__loading">
+                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <img id="player__currentplay__banner__image" src="res/placeholder.png" alt="NoBannerFound">
+            </div>
+            <p id="player__currentplay__big"></p>
+            <p id="player__currentplay__small"></p>
+        </div>
+
+        <div id="player__controls">
+            <div id="player__controls__main">
+                <button id="player__controls__main__random" class="player__button"><i class="fa fa-random"></i></button>
+                <button id="player__controls__main__previous" class="player__button"><i class="fa fa-step-backward"></i></button>
+                <button id="player__controls__main__playpause" class="player__button player__button__bigger"><i class="fa fa-play-circle"></i></button>
+                <button id="player__controls__main__next" class="player__button"><i class="fa fa-step-forward"></i></button>
+                <button id="player__controls__main__loop" class="player__button"><i class="fa fa-retweet"></i></button>
+            </div>
+            <div id="player__controls__trackmeta">
+                <i id="player__controls__trackmeta__currentTime" class="">00:00:00</i>&nbsp;
+                <input id="player__controls__trackmeta__seekerslider" class="player__slider" type="range" min="0" max="100">&nbsp;
+                <i id="player__controls__trackmeta__currentTrackLength" class="">00:00:00</i>
+            </div>
+        </div>
+
+        <div id="player__right">
+            <button id="player__right__playlist" class="player__button"><i class="fa fa-th-list"></i></button>
+            <button id="player__right__volume" class="player__button"><i class="fa fa-volume-up"></i></button>
+            <input id="player__right__volumeslider" class="player__slider" type="range" min="0" max="100" value="100">
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------ -->
+    <!-- Webplayer einbinden und konfigurieren -->
+    <script type="text/javascript" src="js/webplayer/gui.js"></script>
+    <script type="text/javascript" src="js/webplayer/mediasession.js"></script>
+    <script type="text/javascript" src="js/webplayer/webplayer.js"></script>
+
+    <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------ -->
+    <!-- rainbow.js einbinden und konfigurieren -->
+    <script type="text/javascript" src="js/rainbow.js/rainbow.js"></script>
+    <script type="text/javascript">
+        var playerRainbow = document.getElementById("player");
+        var playerRainbow = new RainbowObject(playerRainbow,"border-color");
+        playerRainbow.startRainbow();
+    </script>
+</body>
+</html>

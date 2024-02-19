@@ -1,0 +1,177 @@
+/**
+ * Container innerhalb des "app"-Div
+ */
+
+/*========================================================================================================================================*/
+/*Container selbst*/
+
+/*Ohne Border unten*/
+.app__container_borderless {
+    /*Größe*/
+    width: calc(100% - 80px);
+    
+    /*Zentrieren*/
+    margin-left: auto;
+    margin-right: auto;
+
+    /*Abstand nach oben / unten (ggf. andere Container)*/
+    margin-top: 20px;
+    margin-bottom: 25px;
+
+    /*Zentriert die Items*/
+    text-align: center;
+}
+
+/*Mit Border unten*/
+.app__container_border {
+    border-bottom: 2px solid #bdbdbd;
+    
+    /*Größe*/
+    width: calc(100% - 80px);
+    
+    /*Zentrieren*/
+    margin-left: auto;
+    margin-right: auto;
+
+    /*Abstand nach oben / unten (ggf. andere Container)*/
+    margin-top: 20px;
+    margin-bottom: 25px;
+
+    /*Zentriert die Items*/
+    text-align: center;
+}
+
+/*========================================================================================================================================*/
+/*Überschriften im Container*/
+
+.app__container__head {
+    text-align: left;
+    font-weight: bold;
+    font-size: 16pt;
+
+    /*Größe*/
+    height: 65px;
+}
+.app__container__head button {
+    /*Button verschwinden lassen*/
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    color: #ffffff;
+    font-size: 40px;
+
+    /*Größe*/
+    height: 65px;
+    width: 65px;
+
+    /*Position*/
+    float: right;
+    margin-top: -68px;
+}
+.app__container__head button:hover {
+    color: #ff0000;
+    cursor: pointer;
+}
+
+/*========================================================================================================================================*/
+/*Container-Header*/
+
+.app__container__header {
+    background-color: #740202;
+    box-shadow: 0px 0px 80px #000000;
+
+    /*Größe*/
+    width: 100%;
+    height: 265px;
+
+    /*Ecken leicht abrunden*/
+    border-radius: 6px;
+}
+
+/*Bild*/
+.app__container__header__image {
+    float: left;
+
+    /*Größe*/
+    width: 235px;
+    height: 235px;
+
+    /*Abstand um das Bild herum*/
+    margin: 15px;
+}
+.app__container__header__image:hover {
+    cursor: pointer;
+    opacity: 0.75;
+}
+.app__container__header__image img {
+    /*Bild ist immer so groß*/
+    width: 235px;
+    height: 235px;
+
+    /*Bild vertikal und horizontal zentrieren*/
+    margin-top: 50%;
+    -ms-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+
+    box-shadow: 0px 0px 10px #000000;
+}
+
+/*Text*/
+.app__container__header__text {
+    float: left;
+    text-align: left;
+
+    /*Größe*/
+    width: calc(100% - 235px - 34px);
+    height: 100%;
+}
+.app__container__header__text a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+}
+.app__container__header__text a:hover {
+    text-decoration: underline;
+    color: inherit;
+}
+.app__container__header__text__type {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-top: 40px;
+}
+.app__container__header__text__name {
+    font-size: 4em;
+    font-weight: bold;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+.app__container__header__text__description {
+    font-size: 0.9em;
+}
+
+/*========================================================================================================================================*/
+/*Container-Info*/
+
+.app__container__info {
+    background-color: #1f1f1f;
+    box-shadow: 0px 0px 10px #000000;
+}
+.app__container__info h2 {
+    padding-top: 15px;
+    padding-left: 15px;
+    text-align: left;
+    font-size: 1.5em;
+}
+.app__container__info p {
+    padding: 15px;
+    padding-top: 0px;
+    text-align: left;
+    color: #d4d4d4;
+    font-size: 1em;
+
+    /*Text-Überlauf-Regelung ausschalten*/
+    text-overflow: clip;
+    overflow: visible;
+    white-space: normal;
+}

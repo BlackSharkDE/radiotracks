@@ -1,0 +1,99 @@
+/**
+ * Für alles in der Visualizer-View
+ */
+
+.app__visualize {
+    /*Größe*/
+    width: 100%;
+    height: 305px;
+
+    /*Inhalt soll zentriert sein*/
+    text-align: center;
+
+    /*Mitte vom "app"-Div*/
+    position: relative;
+    top: 50%;
+    transform: translate(0%,-50%);
+
+    /*border: 2px solid red;*/
+}
+
+.app__visualize__canvas {
+    /*Größe*/
+    width: calc(49% - (235px / 2) - (2 * 2px)); /*Werte richten sich nach "app__visualize__bigcover": (Breite / 2) und (Margin-Left/Right * 2)*/
+    height: 235px;
+
+    /*Für Aufreihung*/
+    display: inline-block;
+
+    /*Standard-Border-Einstellungen (werden über JS weiter angepasst)*/
+    border-color: #ff0000; /*Startfarbe*/
+    border-style: solid;
+    border-top-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+}
+
+.app__visualize__bigcover {
+    /*Größe*/
+    width: 235px;
+    height: 235px;
+
+    /*Für Aufreihung*/
+    display: inline-block;
+
+    /*Abstand zur Visualierung*/
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.app__visualize__bigcover:hover {
+    cursor: pointer;
+}
+
+.app__visualize__bigcover img {
+    /*Maximale Größe eines Bildes*/
+    max-width: 235px;
+    max-height: 235px;
+
+    /*Umgehe Verschiebung von Parent-DIV*/
+    float: left;
+
+    /*Bild vertikal und horizontal zentrieren*/
+    margin-top: 50%;
+    margin-left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    box-shadow: 0px 0px 10px #000000;
+}
+
+.app__visualize__select {   
+    /*Größe*/
+    width: 235px;
+    height: 45px;
+
+    /*Text*/
+    font-size: 15pt;
+    text-align: center;
+
+    /*Stil*/
+    background-color: #000000;
+    border: none;
+    border-radius: 10px;
+
+    /*Abstand zu erster Reihe*/
+    margin-top: 10px;
+}
+
+.app__visualize__hint {
+    font-size: 16pt;
+    background-color: #000000;
+
+    padding: 20px;
+    border-radius: 10px;
+
+    display: inline-block;
+
+    box-shadow: 0px 0px 30px #000000;
+}
